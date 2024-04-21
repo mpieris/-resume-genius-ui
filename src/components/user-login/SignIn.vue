@@ -27,6 +27,14 @@
         </v-col>
       </v-row>
 
+      <v-row class="mt-6">
+        <v-col cols="12" class="py-2">
+          <router-link to="#" style="color: black">
+            <v-label>Forgot Password?</v-label>
+          </router-link>
+        </v-col>
+      </v-row>
+
       <v-row class="mt-8">
         <v-col cols="12" class="flex-row">
           <div class="d-flex flex-row">
