@@ -4,6 +4,37 @@
       <v-row>
         <v-col cols="12" class="mt-2 py-2">
           <v-text-field
+            v-model="fname"
+            :error-messages="vuelidate.fname.$errors.map((e) => e.$message as string)"
+            label="First Name"
+            required
+            @input="vuelidate.fname.$touch"
+            @blur="vuelidate.fname.$touch"
+          />
+        </v-col>
+        <v-col cols="12" class="mt-2 py-2">
+          <v-text-field
+            v-model="lname"
+            :error-messages="vuelidate.lname.$errors.map((e) => e.$message as string)"
+            label="Last Name"
+            required
+            @input="vuelidate.lname.$touch"
+            @blur="vuelidate.lname.$touch"
+          />
+        </v-col>
+
+        <!-- <v-col cols="12" class="mt-2 py-2">
+          <v-text-field
+            v-model="lname"
+            :error-messages="vuelidate.fname.$errors.map((e) => e.$message as string)"
+            label="Last Name"
+            required
+            @input="vuelidate.lname.$touch"
+            @blur="vuelidate.lname.$touch"
+          />
+        </v-col> -->
+        <v-col cols="12" class="mt-2 py-2">
+          <v-text-field
             v-model="emailAddress"
             :error-messages="vuelidate.emailAddress.$errors.map((e) => e.$message as string)"
             label="Email"
@@ -52,6 +83,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useCVStore } from '@/stores/cv-store';
 import { useUserStore } from '@/stores/user-store';
 import { useVuelidate } from '@vuelidate/core';
 import { email, helpers, maxLength, minLength, required, sameAs } from '@vuelidate/validators';
@@ -61,11 +93,15 @@ import { ref, watch } from 'vue';
 const emit = defineEmits(['on-close', 'on-signup']);
 
 const userStore = useUserStore();
+const cvStore = useCVStore();
 const { currentUser, userLoading } = storeToRefs(userStore);
+const { entryCV } = storeToRefs(cvStore);
 
-const emailAddress = ref('');
+const emailAddress = ref(entryCV.value?.email || '');
 const password = ref('');
 const confirmPassword = ref('');
+const fname = ref(entryCV.value?.firstName || '');
+const lname = ref(entryCV.value?.lastName || '');
 
 const rules = {
   emailAddress: { required, email },
@@ -88,9 +124,15 @@ const rules = {
     required,
     sameAsPassword: sameAs(password),
   },
+  fname: {
+    required,
+  },
+  lname: {
+    required,
+  },
 };
 
-const vuelidate = useVuelidate(rules, { emailAddress, password, confirmPassword });
+const vuelidate = useVuelidate(rules, { emailAddress, password, confirmPassword, fname, lname });
 
 watch(
   () => currentUser.value,

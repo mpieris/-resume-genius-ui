@@ -49,6 +49,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useCVStore } from '@/stores/cv-store';
 import { useUserStore } from '@/stores/user-store';
 import { useVuelidate } from '@vuelidate/core';
 import { email, required } from '@vuelidate/validators';
@@ -58,9 +59,11 @@ import { ref, watch } from 'vue';
 const emit = defineEmits(['on-close', 'on-signin']);
 
 const userStore = useUserStore();
+const cvStore = useCVStore();
 const { currentUser, userLoading } = storeToRefs(userStore);
+const { entryCV } = storeToRefs(cvStore);
 
-const emailAddress = ref('');
+const emailAddress = ref(entryCV.value?.email || '');
 const password = ref('');
 
 const rules = {
