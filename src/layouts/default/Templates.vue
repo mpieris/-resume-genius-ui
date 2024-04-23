@@ -38,7 +38,7 @@
               </div>
               <div class="text-caption" style="padding-top: 2%; padding-bottom: 2%">Professional Resume</div>
             </div>
-            <v-btn color="bg-grey-lighten-3" variant="outlined" to="/create-resume"> Select </v-btn>
+            <v-btn color="bg-grey-lighten-3" variant="outlined" to="/resume-creation"> Select </v-btn>
           </v-card-item>
         </v-card>
       </v-col>
@@ -46,7 +46,7 @@
   </v-container>
 
   <div class="d-flex justify-center mt-7">
-    <v-btn color="bg-grey-lighten-3" variant="outlined" to="/create-resume"> Get Started </v-btn>
+    <v-btn color="bg-grey-lighten-3" variant="outlined" to="/resume-creation"> Get Started </v-btn>
   </div>
   <div class="text-caption" style="padding-top: 10%; text-align: center">
     <p>Privacy Policy | Terms and Conditions | Contact Us</p>
