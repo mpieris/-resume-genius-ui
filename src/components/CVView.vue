@@ -36,15 +36,18 @@
                   <div class="order-2 order-sm-1">
                     <!-- <div class="v-card-title text-h6 text-md-h5 text-lg-h4"><span>Mr</span> 111 1</div> -->
                     <v-card-title class="text-h6 text-md-h5 text-lg-h4">{{
-                      cv.firstName + ' ' + cv.lastName
+                      cv?.firstName + ' ' + cv?.lastName
                     }}</v-card-title>
                     <div class="v-card-text">
                       <div>
-                        <div class="my-1">Nearest city: 111111111</div>
-                        <div class="my-1">Email: dwed@gmail.com</div>
-                        <div class="my-1">Phone: 111111111 <span> (11111111)</span></div>
+                        <div class="my-1">{{ cv?.headline }}</div>
+                        <div class="my-1">Email: {{ cv?.email }}</div>
+                        <div class="my-1">Phone: {{ cv?.phone }}</div>
                       </div>
                     </div>
+                    <!-- <v-card-actions>
+                      <v-btn></v-btn>
+                    </v-card-actions> -->
                     <div class="v-card-actions">
                       <button
                         type="button"
@@ -131,14 +134,14 @@
                   <div class="v-row">
                     <div class="v-col-sm-6 v-col-12">
                       <div>Address:</div>
-                      <div>1111111 <span>,</span></div>
-                      <div>11111,</div>
-                      <div>111111111</div>
+                      <div>{{ cv?.addressLine1 }} <span>,</span></div>
+                      <div>{{ cv?.addressLine2 }},</div>
+                      <div>{{ cv?.addressCity }}</div>
                       <!---->
                     </div>
                     <div class="v-col-sm-6 v-col-12">
                       <div>Age: 26-30</div>
-                      <div>Gender: Man</div>
+                      <div>Gender: {{ cv?.gender }}</div>
                     </div>
                   </div>
                 </div>
@@ -176,17 +179,19 @@
                 <div class="v-card-title text-subtitle-2">Qualifications</div>
                 <div class="v-card-text">
                   <div class="v-row">
-                    <div class="v-col-sm-6 v-col-12"><div>No of GCSE passes: 1</div></div>
                     <div class="v-col-sm-6 v-col-12">
-                      <div>Primary education: aaaaaaa</div>
-                      <div>Secondary education: aaaaaa</div>
-                      <div>Higher education: aaaaaaa</div>
+                      <div>No of GCSE passes: {{ cv?.noOfGCSEPasses }}</div>
+                    </div>
+                    <div class="v-col-sm-6 v-col-12">
+                      <div>Primary education: {{ cv?.primaryEducationLevel }}</div>
+                      <div>Secondary education: {{ cv?.secondaryEducationLevel }}</div>
+                      <div>Higher education: {{ cv?.higherEducationLevel }}</div>
                     </div>
                     <div class="v-col-sm-6 v-col-12">
                       <div>Professional qualifications</div>
-                      <div>aaaaa</div>
-                      <div>aaaaaaaaa</div>
-                      <div>aaaaaaaa</div>
+                      <div>{{ cv?.professionalQualifications[0] }}</div>
+                      <div>{{ cv?.professionalQualifications[1] }}</div>
+                      <div>{{ cv?.professionalQualifications[2] }}</div>
                     </div>
                   </div>
                 </div>
@@ -224,12 +229,14 @@
                 <div class="v-card-title text-subtitle-2">Experience</div>
                 <div class="v-card-text">
                   <div class="v-row">
-                    <div class="v-col-sm-6 v-col-12"><div>Total experience (years): 3</div></div>
+                    <div class="v-col-sm-6 v-col-12">
+                      <div>Total experience (years): {{ cv?.experienceTotal }}</div>
+                    </div>
                     <div class="v-col-sm-6 v-col-12">
                       <div>Details</div>
-                      <div>qeqwe qweqwe</div>
-                      <div>g qwqweqwe</div>
-                      <div>qewfqwf qweqw</div>
+                      <div>{{ cv?.experiences[0] }}</div>
+                      <div>{{ cv?.experiences[1] }}</div>
+                      <div>{{ cv?.experiences[2] }}</div>
                     </div>
                   </div>
                 </div>
