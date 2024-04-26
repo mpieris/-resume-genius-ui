@@ -16,6 +16,14 @@
       </router-link>
       <v-spacer />
       <v-toolbar-items class="hidden-sm-and-down me-4">
+        <v-list-item
+          v-if="!isAgencyUser && cvAvailable"
+          prepend-icon="mdi-file-document"
+          color="black"
+          value="cv"
+          to="cv"
+        />
+        <v-list-item v-if="isAgencyUser" prepend-icon="mdi-file-search" color="black" value="search" to="search" />
         <user-info v-if="currentUser" @on-logout="logout" />
       </v-toolbar-items>
       <v-btn v-if="!currentUser" class="hidden-sm-and-down me-4" icon>
