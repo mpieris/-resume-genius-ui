@@ -26,11 +26,19 @@ export const useUserStore = defineStore('UserStore', () => {
   const setUser = async (newUser: User) => {
     user.value.status = ApiStatus.LOADING;
     await delay(2000);
-    user.value.data = {
-      ...user.value.data,
-      ...newUser,
-      type: UserType.APPLICANT,
-    };
+    if (newUser.email == 'anna@gmail.com') {
+      user.value.data = {
+        ...user.value.data,
+        ...newUser,
+        type: UserType.AGENCY_USER,
+      };
+    } else {
+      user.value.data = {
+        ...user.value.data,
+        ...newUser,
+        type: UserType.APPLICANT,
+      };
+    }
     user.value.status = ApiStatus.SUCCESS;
   };
 
