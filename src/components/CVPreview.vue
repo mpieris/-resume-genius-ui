@@ -22,25 +22,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useCVStore } from '@/stores/cv-store';
-import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
-
-const store = useCVStore();
-const { entryCV } = storeToRefs(store);
-
 const props = defineProps({
   cv: { type: Object },
 });
-
-const tab = ref(0);
-
-async function next() {
-  tab.value = tab.value + 1;
-}
-async function submit() {
-  console.log(entryCV.value);
-}
 </script>
 
 <style scoped lang="scss">
