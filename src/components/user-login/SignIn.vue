@@ -76,7 +76,7 @@ const vuelidate = useVuelidate(rules, { emailAddress, password });
 watch(
   () => currentUser.value,
   () => {
-    emailAddress.value = currentUser.value?.email || '';
+    emailAddress.value = currentUser.value?.email ?? '';
   }
 );
 

@@ -23,14 +23,6 @@
         >
           <template #label> CV Headline <span class="font-weight-medium text-red">*</span> </template>
         </v-text-field>
-        <!-- <image-upload
-          action="create"
-          :image_style="{
-            border: 'rounded-circle',
-            height: '100',
-            width: '100',
-          }"
-        /> -->
       </v-col>
       <v-col cols="12" md="6" class="py-2">
         <v-text-field
@@ -128,8 +120,6 @@ import { useCVStore } from '@/stores/cv-store';
 import { useVuelidate } from '@vuelidate/core';
 import { email, required, numeric, maxLength } from '@vuelidate/validators';
 import { storeToRefs } from 'pinia';
-// import { ImageUpload } from 'image-upload-vue';
-
 const emit = defineEmits(['on-next', 'on-submit']);
 
 const store = useCVStore();
