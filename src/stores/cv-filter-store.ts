@@ -21,14 +21,11 @@ export const useCvfilterStore = defineStore('search', () => {
   });
 
   const entryFilter = computed(() => entryCVFilterInternal.value.data);
-  let isSearch = ref(false);
 
   const search = async () => {
     entryFilter.value.isSearch = 'true';
     currentFilters.value.data = entryFilter.value;
     entryCVFilterInternal.value.data = entryFilter.value;
-
-    isSearch = ref(true);
   };
 
   const clearSearch = async () => {

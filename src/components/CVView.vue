@@ -52,9 +52,6 @@
                         <div class="my-1">Phone: {{ cv?.phone }}</div>
                       </div>
                     </div>
-                    <!-- <v-card-actions>
-                      <v-btn></v-btn>
-                    </v-card-actions> -->
                     <div class="v-card-actions">
                       <button
                         type="button"
@@ -240,8 +237,6 @@
 <script lang="ts" setup>
 import { useCVStore } from '@/stores/cv-store';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
-
 const store = useCVStore();
 const { cv } = storeToRefs(store);
 </script>

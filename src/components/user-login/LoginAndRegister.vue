@@ -26,10 +26,9 @@
 
 <script lang="ts" setup>
 import { User, useUserStore } from '@/stores/user-store';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import SignIn from './SignIn.vue';
 import SignUp from './SignUp.vue';
-import { watch } from 'vue';
 import { delay } from '@/services/util';
 
 const userStore = useUserStore();

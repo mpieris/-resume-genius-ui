@@ -95,7 +95,7 @@ import CVPreview from './CVPreview.vue';
 import { range } from 'lodash';
 
 const store = useCvfilterStore();
-const { entryFilter, entryCVFilterInternal } = storeToRefs(store);
+const { entryFilter } = storeToRefs(store);
 
 function searchCv() {
   store.search();

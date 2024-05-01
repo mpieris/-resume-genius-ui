@@ -22,17 +22,6 @@
             @blur="vuelidate.lname.$touch"
           />
         </v-col>
-
-        <!-- <v-col cols="12" class="mt-2 py-2">
-          <v-text-field
-            v-model="lname"
-            :error-messages="vuelidate.fname.$errors.map((e) => e.$message as string)"
-            label="Last Name"
-            required
-            @input="vuelidate.lname.$touch"
-            @blur="vuelidate.lname.$touch"
-          />
-        </v-col> -->
         <v-col cols="12" class="mt-2 py-2">
           <v-text-field
             v-model="emailAddress"
@@ -137,7 +126,7 @@ const vuelidate = useVuelidate(rules, { emailAddress, password, confirmPassword,
 watch(
   () => currentUser.value,
   () => {
-    emailAddress.value = currentUser.value?.email || '';
+    emailAddress.value = currentUser.value?.email ?? '';
   }
 );
 

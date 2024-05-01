@@ -109,8 +109,7 @@ import { CVEntryStatus } from '@/services/constants';
 import { useCVStore } from '@/stores/cv-store';
 import { useUserStore } from '@/stores/user-store';
 import { storeToRefs } from 'pinia';
-import { watch } from 'vue';
-import { ref } from 'vue';
+import { watch, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
