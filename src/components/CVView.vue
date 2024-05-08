@@ -52,45 +52,31 @@
                         <div class="my-1">Phone: {{ cv?.phone }}</div>
                       </div>
                     </div>
-                    <div class="v-card-actions">
-                      <button
-                        type="button"
-                        class="v-btn v-btn--icon v-theme--light text-surface-variant v-btn--density-default v-btn--size-small v-btn--variant-text"
+                    <v-card-actions v-if="!downloading">
+                      <v-btn
+                        size="small"
+                        color="surface-variant"
+                        variant="text"
+                        icon="mdi-download"
                         title="Download"
-                      >
-                        <span class="v-btn__overlay"></span><span class="v-btn__underlay"></span
-                        ><span class="v-btn__content" data-no-activator=""
-                          ><i
-                            class="mdi-download mdi v-icon notranslate v-theme--light v-icon--size-default"
-                            aria-hidden="true"
-                          ></i
-                        ></span></button
-                      ><button
-                        type="button"
-                        class="v-btn v-btn--icon v-theme--light text-surface-variant v-btn--density-default v-btn--size-small v-btn--variant-text"
+                        @click="download"
+                      />
+                      <v-btn
+                        size="small"
+                        color="surface-variant"
+                        variant="text"
+                        icon="mdi-pencil"
                         title="Edit"
-                      >
-                        <span class="v-btn__overlay"></span><span class="v-btn__underlay"></span
-                        ><span class="v-btn__content" data-no-activator=""
-                          ><i
-                            class="mdi-pencil mdi v-icon notranslate v-theme--light v-icon--size-default"
-                            aria-hidden="true"
-                          ></i
-                        ></span></button
-                      ><button
-                        type="button"
-                        class="v-btn v-btn--icon v-theme--light text-surface-variant v-btn--density-default v-btn--size-small v-btn--variant-text"
+                        @click="edit"
+                      />
+                      <v-btn
+                        size="small"
+                        color="surface-variant"
+                        variant="text"
+                        icon="mdi-delete"
                         title="Delete"
-                      >
-                        <span class="v-btn__overlay"></span><span class="v-btn__underlay"></span
-                        ><span class="v-btn__content" data-no-activator=""
-                          ><i
-                            class="mdi-delete mdi v-icon notranslate v-theme--light v-icon--size-default"
-                            aria-hidden="true"
-                          ></i
-                        ></span>
-                      </button>
-                    </div>
+                      ></v-btn>
+                    </v-card-actions>
                   </div>
                 </div>
                 <span class="v-card__underlay"></span>
@@ -237,6 +223,35 @@
 <script lang="ts" setup>
 import { useCVStore } from '@/stores/cv-store';
 import { storeToRefs } from 'pinia';
+import html2pdf from 'html2pdf.js';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 const store = useCVStore();
 const { cv } = storeToRefs(store);
+
+const downloading = ref(false);
+function edit() {
+  store.editCV();
+  router.push({ name: 'cv-entry' });
+}
+function download() {
+  downloading.value = true;
+  const element = document.getElementById('root');
+  const opt = {
+    margin: 1,
+    filename: `${cv.value?.firstName}-${cv.value?.lastName}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+  };
+  html2pdf()
+    .set(opt)
+    .from(element)
+    .then(() => {
+      downloading.value = false;
+    })
+    .save();
+}
 </script>

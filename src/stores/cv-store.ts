@@ -68,6 +68,11 @@ export const useCVStore = defineStore('resume-creation', () => {
     currentUserCV.value.status = CVStatus.SUCCESS;
   };
 
+  const editCV = async () => {
+    entryCVInternal.value.data = cv.value as any;
+    entryCVInternal.value.status = CVEntryStatus.IN_PROGRESS;
+  };
+
   return {
     initialCV,
     entryCV,
@@ -76,6 +81,7 @@ export const useCVStore = defineStore('resume-creation', () => {
     resetCV,
     updateCV,
     submitCV,
+    editCV,
     cv,
     cvStatus,
     cvAvailable,
